@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../dashboard/dashboard_page.dart';
 import '../dashboard/dashboard_widgets.dart';
+import '../logbook/logbook_page.dart';
+import '../perizinan/perizinan_page.dart';
+import '../profil/profil_page.dart';
 import 'absensi_widgets.dart';
 
 class AbsensiPage extends StatefulWidget {
@@ -19,6 +22,14 @@ class _AbsensiPageState extends State<AbsensiPage> {
     if (index == 0) {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const DashboardPage()),
+      );
+    } else if (index == 2) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const LogbookPage()),
+      );
+    } else if (index == 3) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const ProfilPage()),
       );
     } else {
       setState(() {
@@ -76,6 +87,28 @@ class _AbsensiPageState extends State<AbsensiPage> {
               // 4. Tombol Aksi Absen Masuk
               AbsensiWidgets.buildAbsenButton(
                 onPressed: () => _showToast('Absensi masuk berhasil dicatat!'),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Tombol Pintas Pengajuan Izin atau Sakit
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const PerizinanPage()),
+                    );
+                  },
+                  child: const Text(
+                    'Berhalangan hadir? Ajukan izin atau sakit di sini',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.primaryTeal,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
               ),
 
               const SizedBox(height: 22),

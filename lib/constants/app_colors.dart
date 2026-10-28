@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Warna Utama
-  static const Color primaryDarkGreen = Color(0xFF005944); // Hijau tua tema SINCOS
+  static const Color primaryDarkGreen = Color(0xFF005944);
   static const Color primaryTeal = Color(0xFF005A5B);
   static const Color backgroundWhite = Color(0xFFFFFFFF);
   static const Color scaffoldBackground = Color(0xFFF8F9FA);

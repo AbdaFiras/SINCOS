@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../constants/app_colors.dart';
 import '../absensi/absensi_page.dart';
+import '../aduan/aduan_page.dart';
+import '../logbook/logbook_page.dart';
+import '../notifikasi/notifikasi_page.dart';
+import '../profil/profil_page.dart';
 import 'dashboard_widgets.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -19,9 +23,39 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
+  void _navigateToLogbook() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const LogbookPage()),
+    );
+  }
+
+  void _navigateToProfil() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const ProfilPage()),
+    );
+  }
+
+  // Fungsi navigasi membuka halaman Notifikasi saat ikon lonceng diklik
+  void _navigateToNotifikasi() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const NotifikasiPage()),
+    );
+  }
+
+  // Fungsi navigasi membuka halaman Aduan saat menu Aduan diklik
+  void _navigateToAduan() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const AduanPage()),
+    );
+  }
+
   void _handleNavTap(int index) {
     if (index == 1) {
       _navigateToAbsensi();
+    } else if (index == 2) {
+      _navigateToLogbook();
+    } else if (index == 3) {
+      _navigateToProfil();
     } else {
       setState(() {
         _currentNavIndex = index;
@@ -52,7 +86,8 @@ class _DashboardPageState extends State<DashboardPage> {
             DashboardWidgets.buildHeaderSection(
               nama: 'Nabila',
               tanggal: 'Selasa, 20 Oktober 2026',
-              onNotificationTap: () => _showFeatureToast('Notifikasi'),
+              // Navigasi ke halaman Notifikasi saat ikon lonceng diklik
+              onNotificationTap: _navigateToNotifikasi,
             ),
 
             // 2. Area Konten Utama Berpadding Responsif
@@ -85,9 +120,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   // 5. Menu Akses Cepat (Absensi, Logbook, Sertifikat, Aduan)
                   DashboardWidgets.buildAksesCepatMenu(
                     onAbsensiTap: _navigateToAbsensi,
-                    onLogbookTap: () => _showFeatureToast('Logbook'),
+                    onLogbookTap: _navigateToLogbook,
                     onSertifikatTap: () => _showFeatureToast('Sertifikat'),
-                    onAduanTap: () => _showFeatureToast('Aduan'),
+                    // Navigasi ke halaman Aduan saat menu Aduan diklik
+                    onAduanTap: _navigateToAduan,
                   ),
 
                   const SizedBox(height: 22),
